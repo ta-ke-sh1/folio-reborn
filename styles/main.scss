@@ -1,0 +1,35 @@
+
+body {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.preloader-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.preloader-card {
+  width: 25%;
+  height: 100%;
+  background-color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+.shuffle-item{
+  white-space: nowrap;
+}

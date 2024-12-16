@@ -8,10 +8,10 @@ export const system_language_en: any = {
         legend_text: "FULL-STACK DEVELOPER",
     },
     galleria: {
-        title: "developer",
+        title: "a developer",
         paragraph: {
-            r1: "This is a demo page to",
-            r2: "demonstrate the text shuffling",
+            r1: "Long story short,",
+            r2: "My name is",
             r3: "effect from CoDrops",
         }
     },

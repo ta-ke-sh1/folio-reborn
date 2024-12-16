@@ -1,75 +1,92 @@
-import gsap from 'gsap';
-import {useGSAP} from '@gsap/react';
-import {useEffect, useRef} from "react";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
+import React, {useEffect, useRef, useState} from "react";
 import {usePreloader} from "../../hooks/usePreloader/usePreloader.tsx";
+import {ActionIcon, Group, Stack, Text, TextInput} from "@mantine/core";
+import {IconCornerRightUp} from "@tabler/icons-react";
+import WindowCard from "../../components/card/windowCard.tsx";
+import ContactLayout from "../contact/contact.tsx";
+import PlaygroundLayout from "../playground/playground.tsx";
 
 export default function LegendLayout() {
-    gsap.registerPlugin(ScrollTrigger)
-    gsap.registerPlugin(useGSAP);
-
-    window.scrollTo(0, 0)
-
-    const titleRef = useRef<HTMLDivElement>(null);
-
-    let videoRef = useRef<any>(null);
-
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const { enterAnimation } = usePreloader();
+    const {enterAnimation} = usePreloader();
+
+    const inputRef = useRef(null);
+
+    const [screens, setScreens] = useState<[] | any[]>([])
+
+    const [command, setCommand] = useState("")
 
     useEffect(() => {
         setTimeout(() => {
-            if(enterAnimation){
+            if (enterAnimation) {
                 enterAnimation()
             }
         }, 1000)
     }, [])
 
-    useGSAP(animateLegend, {
-        scope: containerRef
-    })
-
-    function animateLegend() {
-        const duration = videoRef.current.duration || 9; // Fallback to 1 to avoid division by zero
-        const updateFrame = (e: any) => {
-            const scrollProgress = e.progress;
-            videoRef.current.currentTime = scrollProgress * duration / 3;
+    function handleClickEnter() {
+        switch (command) {
+            case "/c":
+                setScreens([
+                    ...screens,
+                    {
+                        title: 'contact',
+                        component: <ContactLayout height={'80vh'}/>
+                    }
+                ])
+                break;
+            case "/p":
+                setScreens([
+                    ...screens,
+                    {
+                        title: 'playground',
+                        component: <PlaygroundLayout height={'80vh'}/>
+                    }
+                ])
+                break;
+            default:
+                break;
         }
+        setCommand("")
+    }
 
-        if (titleRef.current && containerRef.current) {
-            gsap.timeline({
-                defaults: {
-                    ease: 'none'
-                },
-                scrollTrigger: {
-                    trigger: titleRef.current,
-                    start: 'bottom bottom',
-                    end: 'top -20%',
-                    scrub: true,
-                    onUpdate: updateFrame
-                },
-            }).to(titleRef.current, {
-                xPercent: '-20',
-                ease: 'none'
-            }).to(containerRef.current, {
-                yPercent: 35,
-                scale: 0.95,
-                startAt: {filter: 'brightness(100%)', opacity: 1},
-                filter: 'brightness(30%)',
-                opacity: 0,
-                borderRadius: '40px'
-            }, 0)
-        }
+    const handleCloseScreen = (index: number) => {
+        let screenTempArr = JSON.parse(JSON.stringify(screens))
+        screenTempArr.splice(index, 1)
+        setScreens(screenTempArr)
     }
 
     return (
         <>
             <div ref={containerRef} className={"legend"} id={"legend-container"}>
-                <p ref={titleRef} className={"legend-title"}>
-                    this is a mock text this is a mock text
-                </p>
-                <video style={{objectFit: 'cover'}} className={"video-background"} ref={videoRef} preload="metadata" src={"/output.mp4"} />
+                {
+                    screens.length > 0 && screens.map((screen, index: number) => (
+                        <React.Fragment
+                            key={"screen-index\-" +
+                                "g" + index}>
+                            <WindowCard close={() => handleCloseScreen(index)} title={screen.title}>
+                                {screen.component}
+                            </WindowCard>
+                        </React.Fragment>)
+                    )
+                }
+                <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
+                    <Stack>
+                        <Text>Hello, </Text>
+                        <Group>
+                            <TextInput
+                                value={command}
+                                ref={inputRef}
+                                style={{
+                                    fontFamily: "JetBrains Mono", width: '400px'
+                                }} onChange={(e) => setCommand(e.currentTarget.value)}/>
+                            <ActionIcon size={"lg"} onClick={handleClickEnter}>
+                                <IconCornerRightUp/>
+                            </ActionIcon>
+                        </Group>
+                    </Stack>
+                </div>
             </div>
         </>
     )

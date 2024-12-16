@@ -58,13 +58,13 @@ export const getPointerPos = (ev: any) => {
         posx = ev.pageX;
         posy = ev.pageY;
     }
-    else if (ev.clientX || ev.clientY) {
-        posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
-        posy = ev.clientY + body.scrollTop + docEl.scrollTop;
-    }
+    // else if (ev.clientX || ev.clientY) {
+    //     posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
+    //     posy = ev.clientY + body.scrollTop + docEl.scrollTop;
+    // }
 
     // Return the position.
-    return {x: posx, y: posy};
+    return {x: posx - 150, y: posy - 150};
 }
 
 /**

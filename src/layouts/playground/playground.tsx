@@ -3,7 +3,12 @@ import {useEffect, useRef} from "react";
 import {handlePointerMove, ImageTrail} from "../../animations/imageTrails/imageTrail.tsx";
 import {useLanguageState} from "../../hooks/useLanguage.ts";
 
-export default function PlaygroundLayout() {
+interface PlaygroundLayoutProps {
+    width?: number | string
+    height?: number | string
+}
+
+export default function PlaygroundLayout({width, height}: PlaygroundLayoutProps) {
     const {languageData} = useLanguageState();
 
     let containerRef = useRef<any>();
@@ -31,8 +36,12 @@ export default function PlaygroundLayout() {
 
     return (
         <>
-            <Container style={{height: '90dvh', position: 'relative'}} className={"hover-container"} ref={containerRef}
-                       fluid>
+            <Container
+                style={{
+                    height: height ?? '90dvh', width: width ?? "100%", position: 'relative'
+                }}
+                className={"hover-container"} ref={containerRef}
+                fluid>
                 <Stack align={"center"} style={{
                     position: 'absolute',
                     left: '50%',

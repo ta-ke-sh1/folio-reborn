@@ -11,7 +11,7 @@ export function enableScroll(){
     document.body.removeEventListener('touchmove', preventDefault, false);
 }
 
-export function shuffleText(e: any, text: string) {
-    let interval;
-    textShuffleLight(e.target, text, interval, 50)
+export function shuffleText(e: any, text: string, interval?: number) {
+    let i;
+    textShuffleLight(e.target, text, i, interval ?? 50)
 }

@@ -3,29 +3,35 @@ import {useEffect} from "react";
 import {GradientAnimation} from "../../animations/gradient/gradient.ts";
 import {shuffleText} from "../../utils/utils.ts";
 
-export default function ContactLayout() {
+interface ContactLayoutProps {
+    width?: string | number
+    height?: string | number
+}
+
+export default function ContactLayout({width, height} : ContactLayoutProps) {
     useEffect(() => {
         let canvas = document.getElementById("canvas")
-        new GradientAnimation(canvas);
+        let controller = new GradientAnimation(canvas);
+
+        return function (){
+            controller.clearCanvas()
+        }
     }, [])
 
     // @ts-ignore
     return (
         <Container fluid style={{
-
-            height: '102.5vh',
-            width: '100%',
+            height: height ?? '102.5vh',
+            width: width ?? '100%',
             position: 'relative'
         }}>
             <Group style={{transform: 'translateY(-10px)'}} justify={"space-between"}>
-                <Group gap={0} style={{marginTop: '2.5vh'}}>
-                    <Text mr={"xs"} style={{
-                        marginTop: '5px',
-                        fontFamily: "aptos, sans-serif",
-                        fontSize: '3.8rem',
-                        letterSpacing: '-3px'
-                    }}>trung ha</Text>
-                </Group>
+                <Text mr={"xs"} style={{
+                    marginTop: '5px',
+                    fontFamily: "aptos, sans-serif",
+                    fontSize: '3.8rem',
+                    letterSpacing: '-3px'
+                }}>trung ha</Text>
             </Group>
             <Group p={"sm"} style={{
                 position: 'absolute',
@@ -104,8 +110,7 @@ export default function ContactLayout() {
                 </Text>
             </Group>
             <canvas style={{
-                borderTopLeftRadius: '30px',
-                borderTopRightRadius: '30px',
+                borderRadius: '10px',
                 zIndex: -1,
                 display: 'block',
                 width: '100%',

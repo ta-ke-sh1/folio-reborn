@@ -1,0 +1,10 @@
+.cell {
+  width: 6vw;
+  height: 6vh;
+  color: white;
+  transition-duration: 0.2s;
+
+  &:hover {
+    background-color: rgb(255, 179, 179);
+  }
+}

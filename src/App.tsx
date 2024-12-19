@@ -1,11 +1,10 @@
-import {createTheme, MantineProvider} from "@mantine/core";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createTheme, MantineProvider } from "@mantine/core";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./layouts/home.tsx";
 import ErrorLayout from "./layouts/404/404.tsx";
 
-import "@fontsource/jetbrains-mono";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/400-italic.css";
+import "@fontsource/geist-sans";
+import "@fontsource/geist-mono";
 
 import '@mantine/core/styles.css';
 import "../styles/main.scss";
@@ -14,9 +13,9 @@ import "../styles/navigation.scss"
 import "../styles/playground.scss"
 import "../styles/fonts/font.scss"
 
-import {useEffect} from "react";
+import { useEffect } from "react";
 import NavigationBar from "./components/navigation/navigation.tsx";
-import {PreloaderWrapper} from "./hooks/usePreloader/usePreloader.tsx";
+import { PreloaderWrapper } from "./hooks/usePreloader/usePreloader.tsx";
 import DevLayout from "./layouts/dev/dev.tsx";
 
 function App() {
@@ -32,11 +31,11 @@ function App() {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <HomeLayout/>,
+            element: <HomeLayout />,
         },
         {
             path: "*",
-            element: <ErrorLayout/>
+            element: <ErrorLayout />
         },
         {
             path: "/dev",
@@ -51,8 +50,8 @@ function App() {
     return (
         <MantineProvider theme={theme}>
             <PreloaderWrapper>
-                <NavigationBar/>
-                <RouterProvider router={router}/>
+                <NavigationBar />
+                <RouterProvider router={router} />
             </PreloaderWrapper>
         </MantineProvider>
     )

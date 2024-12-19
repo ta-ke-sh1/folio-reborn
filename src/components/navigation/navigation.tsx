@@ -1,9 +1,9 @@
-import {Group, Stack, Text, useMantineColorScheme} from "@mantine/core";
-import {useLanguageState} from "../../hooks/useLanguage.ts";
+import { Group, Stack, Text, useMantineColorScheme } from "@mantine/core";
+import { useLanguageState } from "../../hooks/useLanguage.ts";
 import { Switch, useMantineTheme, rem } from '@mantine/core';
-import {IconMoonStars, IconSun} from "@tabler/icons-react";
-import {Language, system_language_en, system_language_vi} from "../../language/languages.tsx";
-import {useEffect, useState} from "react";
+import { IconMoonStars, IconSun } from "@tabler/icons-react";
+import { Language, system_language_en, system_language_vi } from "../../language/languages.tsx";
+import { useEffect, useState } from "react";
 import moment from 'moment';
 
 export default function NavigationBar() {
@@ -48,7 +48,7 @@ export default function NavigationBar() {
     )
 
     const toggleLanguage = () => {
-        if(language === Language.VI){
+        if (language === Language.VI) {
             setLanguage(Language.EN)
             setLanguageSource(system_language_en)
         } else {

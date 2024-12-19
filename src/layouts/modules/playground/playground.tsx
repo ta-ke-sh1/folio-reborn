@@ -1,15 +1,15 @@
-import {Container, Stack} from "@mantine/core";
-import {useEffect, useRef} from "react";
-import {handlePointerMove, ImageTrail} from "../../animations/imageTrails/imageTrail.tsx";
-import {useLanguageState} from "../../hooks/useLanguage.ts";
+import { Container, Stack } from "@mantine/core";
+import { useEffect, useRef } from "react";
+import { ImageTrail, handlePointerMove } from "../../../animations/imageTrails/imageTrail";
+import { useLanguageState } from "../../../hooks/useLanguage";
 
 interface PlaygroundLayoutProps {
     width?: number | string
     height?: number | string
 }
 
-export default function PlaygroundLayout({width, height}: PlaygroundLayoutProps) {
-    const {languageData} = useLanguageState();
+export default function PlaygroundLayout({ width, height }: PlaygroundLayoutProps) {
+    const { languageData } = useLanguageState();
 
     let containerRef = useRef<any>();
 
@@ -31,7 +31,7 @@ export default function PlaygroundLayout({width, height}: PlaygroundLayoutProps)
 
     const font_style = {
         lineHeight: '12px',
-        fontFamily: "aptos",
+        fontFamily: "Geist Sans",
     }
 
     return (
@@ -59,37 +59,37 @@ export default function PlaygroundLayout({width, height}: PlaygroundLayoutProps)
                     </Stack>
                 </Stack>
             </Container>
-            <Container style={{height: '0dvh'}}>
+            <Container style={{ height: '0dvh' }}>
                 <div className="contents">
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('img/21.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('img/21.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/22.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/22.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/23.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/23.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/24.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/24.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/25.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/25.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/26.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/26.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/27.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/27.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/28.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/28.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/29.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/29.jpg')" }}></div>
                     </div>
                     <div className="content__img">
-                        <div className="content__img-inner" style={{backgroundImage: "url('/img/30.jpg')"}}></div>
+                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/30.jpg')" }}></div>
                     </div>
                 </div>
             </Container>

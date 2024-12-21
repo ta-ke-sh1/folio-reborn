@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import ModuleCard from "../../../components/card/moduleCard";
-import { Stack, Text } from "@mantine/core";
+import { Divider, Group, Text } from "@mantine/core";
 import moment from 'moment';
 
-export default function Time() {
+export default function Time(props: any) {
 
     const [time, setTime] = useState(new Date());
 
@@ -15,19 +15,24 @@ export default function Time() {
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, []);
 
-    return (
-        <ModuleCard style={{
-            position: 'absolute',
+    const fontSize = '12px'
 
-        }}>
-            <Stack mr={"xl"} align={"end"}>
-                <Text size={"sm"}>
+    return (
+        <ModuleCard style={{ width: '180px', ...props.style }}>
+            <Text pt={5} pb={2} pl="xs" pr="xs" style={{ fontSize: '14px' }}>INF0</Text>
+            <Divider m={0} style={{ backgroundColor: 'white' }} />
+            <Group justify="space-between" pl="xs" pr="xs" m={0}>
+                <Text pt={5} style={{ fontSize: fontSize, fontFamily: 'geist-regular' }}>Location:</Text>
+                <Text pt={5} style={{ fontSize: fontSize, fontFamily: 'geist-regular' }}>
                     Hanoi, Vietnam
                 </Text>
-                <Text size={"sm"}>
+            </Group>
+            <Group justify="space-between" pl="xs" pr="xs" pb="xs" m={0}>
+                <Text pt={5} style={{ fontSize: fontSize, fontFamily: 'geist-regular' }}>Current time:</Text>
+                <Text pt={5} style={{ fontSize: fontSize, fontFamily: 'geist-regular' }}>
                     {moment(time).format('hh:mm A')}
                 </Text>
-            </Stack>
+            </Group>
         </ModuleCard>
     )
 

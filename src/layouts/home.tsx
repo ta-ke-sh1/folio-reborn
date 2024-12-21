@@ -7,6 +7,10 @@ import WindowCard from "../components/card/windowCard.tsx";
 import ContactLayout from "./contact/contact.tsx";
 import PlaygroundLayout from "./modules/playground/playground.tsx";
 import Time from "./modules/controls/time.tsx";
+import Controls from "./modules/controls/controls.tsx";
+import { getMessage, useLanguageState } from "../hooks/useLanguage.ts";
+import moment from "moment";
+import Commands from "./modules/controls/commands.tsx";
 
 export default function HomeLayout() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -18,6 +22,10 @@ export default function HomeLayout() {
     const [screens, setScreens] = useState<[] | any[]>([])
 
     const [command, setCommand] = useState("")
+
+    const { language } = useLanguageState();
+
+    const motto = getMessage(language, "motto_" + moment(new Date()).weekday())
 
     useEffect(() => {
         let canvas = document.getElementById("canvas")
@@ -82,23 +90,22 @@ export default function HomeLayout() {
                         </React.Fragment>)
                     )
                 }
-                <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
-                    <Stack>
-                        <Text>Hello, </Text>
-                        <Group>
-                            <TextInput
-                                value={command}
-                                ref={inputRef}
-                                style={{
-                                    fontFamily: "JetBrains Mono", width: '400px'
-                                }} onChange={(e) => setCommand(e.currentTarget.value)} />
-                            <ActionIcon size={"lg"} onClick={handleClickEnter}>
-                                <IconCornerRightUp />
-                            </ActionIcon>
-                        </Group>
-                    </Stack>
-                </div>
-                <Time />
+                <Stack style={{ position: 'absolute', bottom: 10, left: 10, width: '200px' }} gap={0}>
+                    <Text>
+                        Daily motto:
+                    </Text>
+                    <Text>{motto}</Text>
+                </Stack>
+
+                <Group style={{ position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)' }}>
+                    <Commands />
+                </Group>
+
+                <Group style={{ position: 'absolute', bottom: 10, right: 10 }} >
+                    <Time />
+                    <Controls />
+                </Group>
+
                 <canvas style={{
                     borderRadius: '10px',
                     zIndex: -1,

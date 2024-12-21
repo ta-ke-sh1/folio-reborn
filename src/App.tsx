@@ -3,8 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./layouts/home.tsx";
 import ErrorLayout from "./layouts/404/404.tsx";
 
-import "@fontsource/geist-sans";
-import "@fontsource/geist-mono";
 
 import '@mantine/core/styles.css';
 import "../styles/main.scss";

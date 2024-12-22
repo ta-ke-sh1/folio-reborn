@@ -14,7 +14,7 @@ export default function NavigationBar() {
             </ModuleCard>
             <div style={{ width: '200px' }}>
                 <Text style={{
-                    color: colorScheme === 'light' ? 'white' : 'black'
+                    color: colorScheme === 'dark' ? 'white' : 'black'
                 }}>
                     M0DULAR(1) IS TA-KE-SH1’S
                     EVER-EVOLVING PLAYGROUND

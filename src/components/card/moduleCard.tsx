@@ -40,7 +40,7 @@ export default function ModuleCard({ style, children }: ModuleCardProps) {
 
 
     return (
-        <Card style={{ ...style }} className="module-box" m={0} p={0} radius={0}>
+        <Card shadow={"xs"} style={{ ...style }} className="module-box" m={0} p={0} radius={0}>
             <Corner className="top-left" style={{ position: 'absolute', height: '8px', ...topLeftCorner }} />
             <Corner className="top-right" style={{ position: 'absolute', height: '8px', ...topRightCorner }} />
             <Corner className="bottom-left" style={{ position: 'absolute', height: '8px', ...bottomLeftCorner }} />

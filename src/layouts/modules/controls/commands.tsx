@@ -9,19 +9,26 @@ export default function Commands(props: any) {
 
     const [command, setCommand] = useState("")
 
+    const [suggestions, setSuggestions] = useState([]);
+    const [commandList, setCommandList] = useState([]);
+
+    function handleCommandChange(value: string) {
+        setCommand(value)
+    }
+
     return (
         <ModuleCard style={{ width: '240px', ...props.style }}>
             <Text pt={5} pb={2} pl="xs" pr="xs" style={{ fontSize: '14px' }}>C0NTR0LS</Text>
             <Divider m={0} />
-            <Group pt={14} pb={18} pl={10} pr={10} justify="space-between">
+            <Group pt={15} pb={18} pl={10} pr={10} justify="space-between">
                 <TextInput
                     value={command}
                     ref={inputRef}
                     style={{
-                        width: '180px',
+                        width: '183px',
                         fontFamily: "JetBrains Mono"
-                    }} onChange={(e) => setCommand(e.currentTarget.value)} />
-                <ActionIcon size={"lg"} onClick={props.handleClickEnter}>
+                    }} onChange={(e) => handleCommandChange(e.currentTarget.value)} />
+                <ActionIcon m={0} size={"lg"} onClick={() => props.handleClickEnter(command)}>
                     <IconCornerRightUp />
                 </ActionIcon>
             </Group>

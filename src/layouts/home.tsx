@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePreloader } from "../hooks/usePreloader/usePreloader.tsx";
-import { ActionIcon, Group, Stack, Text, TextInput } from "@mantine/core";
+import { ActionIcon, Grid, Group, Stack, Text, TextInput } from "@mantine/core";
 import { IconCornerRightUp } from "@tabler/icons-react";
 import { GradientAnimation } from "../animations/gradient/gradient.ts";
 import WindowCard from "../components/card/windowCard.tsx";
@@ -25,6 +25,7 @@ export default function HomeLayout() {
 
     const { language } = useLanguageState();
 
+    console.log("motto_" + moment(new Date()).weekday())
     const motto = getMessage(language, "motto_" + moment(new Date()).weekday())
 
     useEffect(() => {
@@ -44,7 +45,7 @@ export default function HomeLayout() {
         }, 1000)
     }, [])
 
-    function handleClickEnter() {
+    function handleClickEnter(command: string) {
         switch (command) {
             case "/c":
                 setScreens([
@@ -67,7 +68,6 @@ export default function HomeLayout() {
             default:
                 break;
         }
-        setCommand("")
     }
 
     const handleCloseScreen = (index: number) => {
@@ -79,32 +79,30 @@ export default function HomeLayout() {
     return (
         <>
             <div ref={containerRef} className={"legend"} id={"legend-container"}>
+                <Grid style={{ width: '100%', zIndex: 10, position: 'fixed', bottom: 10, left: 10 }} >
+                    <Grid.Col span={{ xs: 12, sm: 12, md: 6 }}>
+                        <Group justify="start" style={{ zIndex: 10 }}>
+                            <Commands handleClickEnter={handleClickEnter} />
+                        </Group>
+                    </Grid.Col>
+                    <Grid.Col span={{ xs: 12, sm: 12, md: 6 }}>
+                        <Group justify="end" pr={30}>
+                            <Time />
+                            <Controls />
+                        </Group>
+                    </Grid.Col>
+                </Grid>
                 {
                     screens.map((screen, index: number) => (
                         <React.Fragment
                             key={"screen-index\-" +
                                 "g" + index}>
-                            <WindowCard close={() => handleCloseScreen(index)} title={screen.title}>
+                            <WindowCard style={{ zIndex: -1 }} close={() => handleCloseScreen(index)} title={screen.title}>
                                 {screen.component}
                             </WindowCard>
                         </React.Fragment>)
                     )
                 }
-                <Stack style={{ position: 'absolute', bottom: 10, left: 10, width: '200px' }} gap={0}>
-                    <Text>
-                        Daily motto:
-                    </Text>
-                    <Text>{motto}</Text>
-                </Stack>
-
-                <Group style={{ position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)' }}>
-                    <Commands />
-                </Group>
-
-                <Group style={{ position: 'absolute', bottom: 10, right: 10 }} >
-                    <Time />
-                    <Controls />
-                </Group>
 
                 <canvas style={{
                     borderRadius: '10px',

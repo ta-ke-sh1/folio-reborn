@@ -1,9 +1,9 @@
 export class GradientAnimation {
     cnv: any;
     ctx: any;
-    circlesNum: number = 15;
-    minRadius: number = 400;
-    maxRadius: number = 400;
+    circlesNum: number = 12;
+    minRadius: number = 50;
+    maxRadius: number = 200;
     speed: number = .005;
 
     w: number = 0;

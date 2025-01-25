@@ -39,3 +39,23 @@ html {
   fill: none;
   stroke-miterlimit: 10;
 }
+
+.eye-outer {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+.eye-outline {
+	fill: black;
+  stroke-width: 0.5px;
+}
+
+path.top,
+path.bottom {
+	fill: transparent;
+	stroke: #a1a1b6;
+	stroke-width: 0.5px;
+	stroke-linecap: round;
+}

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePreloader } from "../hooks/usePreloader/usePreloader.tsx";
-import { ActionIcon, Grid, Group, Stack, Text, TextInput } from "@mantine/core";
-import { IconCornerRightUp } from "@tabler/icons-react";
-import { GradientAnimation } from "../animations/gradient/gradient.ts";
+import { Grid, Group } from "@mantine/core";
 import WindowCard from "../components/card/windowCard.tsx";
 import ContactLayout from "./contact/contact.tsx";
 import PlaygroundLayout from "./modules/playground/playground.tsx";
@@ -11,6 +9,18 @@ import Controls from "./modules/controls/controls.tsx";
 import { getMessage, useLanguageState } from "../hooks/useLanguage.ts";
 import moment from "moment";
 import Commands from "./modules/controls/commands.tsx";
+import GradientBackground from "../components/backgrounds/gradient.tsx";
+import EyeBackground from "../components/backgrounds/eye.tsx";
+import Theme from "./modules/controls/theme.tsx";
+
+const backgrounds = [
+    {
+        component: <GradientBackground />,
+    },
+    {
+        component: <EyeBackground />,
+    },
+];
 
 export default function HomeLayout() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -19,31 +29,23 @@ export default function HomeLayout() {
 
     const inputRef = useRef(null);
 
-    const [screens, setScreens] = useState<[] | any[]>([])
+    const [screens, setScreens] = useState<[] | any[]>([]);
 
-    const [command, setCommand] = useState("")
+    const [command, setCommand] = useState("");
+
+    const [selectedBg, setSelectedBg] = useState<number>(1);
 
     const { language } = useLanguageState();
 
-    console.log("motto_" + moment(new Date()).weekday())
-    const motto = getMessage(language, "motto_" + moment(new Date()).weekday())
-
-    useEffect(() => {
-        let canvas = document.getElementById("canvas")
-        let controller = new GradientAnimation(canvas);
-
-        return function () {
-            controller.clearCanvas()
-        }
-    }, [])
+    const motto = getMessage(language, "motto_" + moment(new Date()).weekday());
 
     useEffect(() => {
         setTimeout(() => {
             if (enterAnimation) {
-                enterAnimation()
+                enterAnimation();
             }
-        }, 1000)
-    }, [])
+        }, 1000);
+    }, []);
 
     function handleClickEnter(command: string) {
         switch (command) {
@@ -51,19 +53,19 @@ export default function HomeLayout() {
                 setScreens([
                     ...screens,
                     {
-                        title: 'contact',
-                        component: <ContactLayout height={'80vh'} />
-                    }
-                ])
+                        title: "contact",
+                        component: <ContactLayout height={"80vh"} />,
+                    },
+                ]);
                 break;
             case "/p":
                 setScreens([
                     ...screens,
                     {
-                        title: 'playground',
-                        component: <PlaygroundLayout height={'80vh'} />
-                    }
-                ])
+                        title: "playground",
+                        component: <PlaygroundLayout height={"80vh"} />,
+                    },
+                ]);
                 break;
             default:
                 break;
@@ -71,50 +73,54 @@ export default function HomeLayout() {
     }
 
     const handleCloseScreen = (index: number) => {
-        let screenTempArr = JSON.parse(JSON.stringify(screens))
-        screenTempArr.splice(index, 1)
-        setScreens(screenTempArr)
-    }
+        let screenTempArr = JSON.parse(JSON.stringify(screens));
+        screenTempArr.splice(index, 1);
+        setScreens(screenTempArr);
+    };
+
+    const toggleBg = (index: number) => {
+        setSelectedBg(index);
+    };
 
     return (
         <>
-            <div ref={containerRef} className={"legend"} id={"legend-container"}>
-                <Grid style={{ width: '100%', zIndex: 10, position: 'fixed', bottom: 10, left: 10 }} >
-                    <Grid.Col span={{ xs: 12, sm: 12, md: 6 }}>
+            <div
+                ref={containerRef}
+                className={"legend"}
+                id={"legend-container"}>
+                <Grid
+                    style={{
+                        width: "100%",
+                        zIndex: 10,
+                        position: "fixed",
+                        bottom: 10,
+                        left: 10,
+                    }}>
+                    <Grid.Col span={{ xs: 6 }}>
                         <Group justify="start" style={{ zIndex: 10 }}>
                             <Commands handleClickEnter={handleClickEnter} />
                         </Group>
                     </Grid.Col>
-                    <Grid.Col span={{ xs: 12, sm: 12, md: 6 }}>
+                    <Grid.Col span={{ xs: 6 }}>
                         <Group justify="end" pr={30}>
+                            <Theme toggleBg={toggleBg} />
                             <Time />
                             <Controls />
                         </Group>
                     </Grid.Col>
                 </Grid>
-                {
-                    screens.map((screen, index: number) => (
-                        <React.Fragment
-                            key={"screen-index\-" +
-                                "g" + index}>
-                            <WindowCard style={{ zIndex: -1 }} close={() => handleCloseScreen(index)} title={screen.title}>
-                                {screen.component}
-                            </WindowCard>
-                        </React.Fragment>)
-                    )
-                }
-
-                <canvas style={{
-                    borderRadius: '10px',
-                    zIndex: -1,
-                    display: 'block',
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    left: 0,
-                    top: 0
-                }} id={"canvas"}></canvas>
+                {screens.map((screen, index: number) => (
+                    <React.Fragment key={"screen-index-" + "g" + index}>
+                        <WindowCard
+                            style={{ zIndex: -1 }}
+                            close={() => handleCloseScreen(index)}
+                            title={screen.title}>
+                            {screen.component}
+                        </WindowCard>
+                    </React.Fragment>
+                ))}
+                {backgrounds[selectedBg].component}
             </div>
         </>
-    )
+    );
 }

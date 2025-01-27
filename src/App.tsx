@@ -3,28 +3,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./layouts/home.tsx";
 import ErrorLayout from "./layouts/404/404.tsx";
 
-
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css";
 import "../styles/main.scss";
-import "../styles/legend.scss"
-import "../styles/navigation.scss"
-import "../styles/playground.scss"
-import "../styles/fonts/font.scss"
+import "../styles/legend.scss";
+import "../styles/navigation.scss";
+import "../styles/playground.scss";
+import "../styles/fonts/font.scss";
 
 import { useEffect } from "react";
 import NavigationBar from "./components/navigation/navigation.tsx";
 import { PreloaderWrapper } from "./hooks/usePreloader/usePreloader.tsx";
 import DevLayout from "./layouts/dev/dev.tsx";
+import Cursor from "./components/cursor/cursor.tsx";
 
 function App() {
-
     useEffect(() => {
-        initSystemSettings()
-    }, [])
+        initSystemSettings();
+    }, []);
 
-    function initSystemSettings() {
-
-    }
+    function initSystemSettings() {}
 
     const router = createBrowserRouter([
         {
@@ -33,26 +30,27 @@ function App() {
         },
         {
             path: "*",
-            element: <ErrorLayout />
+            element: <ErrorLayout />,
         },
         {
             path: "/dev",
-            element: <DevLayout />
-        }
+            element: <DevLayout />,
+        },
     ]);
 
     const theme = createTheme({
-        fontFamily: 'JetBrains Mono, monospace',
+        fontFamily: "JetBrains Mono, monospace",
     });
 
     return (
         <MantineProvider theme={theme}>
             <PreloaderWrapper>
+                <Cursor />
                 <NavigationBar />
                 <RouterProvider router={router} />
             </PreloaderWrapper>
         </MantineProvider>
-    )
+    );
 }
 
-export default App
+export default App;

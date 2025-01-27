@@ -12,6 +12,7 @@ import Commands from "./modules/controls/commands.tsx";
 import GradientBackground from "../components/backgrounds/gradient.tsx";
 import EyeBackground from "../components/backgrounds/eye.tsx";
 import Theme from "./modules/controls/theme.tsx";
+import StoryLayout from "./story/story.tsx";
 
 const backgrounds = [
     {
@@ -33,7 +34,7 @@ export default function HomeLayout() {
 
     const [command, setCommand] = useState("");
 
-    const [selectedBg, setSelectedBg] = useState<number>(1);
+    const [selectedBg, setSelectedBg] = useState<number>(0);
 
     const { language } = useLanguageState();
 
@@ -49,6 +50,15 @@ export default function HomeLayout() {
 
     function handleClickEnter(command: string) {
         switch (command) {
+            case "/a":
+                setScreens([
+                    ...screens,
+                    {
+                        title: "contact",
+                        component: <StoryLayout height={"80vh"} />,
+                    },
+                ]);
+                break;
             case "/c":
                 setScreens([
                     ...screens,

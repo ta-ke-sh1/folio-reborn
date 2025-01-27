@@ -2,6 +2,15 @@ body {
   font-family: "JetBrains Mono", monospace;
 }
 
+body *,
+body button {
+	cursor: none !important;
+}
+
+html:hover {
+	cursor: none;
+}
+
 .preloader-container {
   position: fixed;
   left: 0;

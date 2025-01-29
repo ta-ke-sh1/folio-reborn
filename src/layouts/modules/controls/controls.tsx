@@ -56,7 +56,7 @@ export default function Controls(props: any) {
     };
 
     return (
-        <ModuleCard style={{ width: "150px", ...props.style }}>
+        <ModuleCard style={{ width: props.width ?? "150px", ...props.style }}>
             <Group>
                 <Text
                     pt={5}

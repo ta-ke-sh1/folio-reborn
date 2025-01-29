@@ -2,11 +2,18 @@ import { IconPlus } from "@tabler/icons-react";
 import $ from "jquery";
 import gsap from "gsap";
 import { useEffect, useState } from "react";
+import { useMantineTheme } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 
 export const LINK_CURSOR_CLASS = "link-cursor";
 
 export default function Cursor() {
+    
+    const theme = useMantineTheme();
+    const isMobile = useMediaQuery(`(max-width: ${parseInt(theme.breakpoints.sm, 10) * 16}px)`, true);
+
     const [cursorType, setCursorType] = useState(0);
+    
 
     const cursors = [
         {
@@ -52,7 +59,7 @@ export default function Cursor() {
         });
     }
 
-    return (
+    return !isMobile ? (
         <div
             id="circle"
             style={{
@@ -62,7 +69,7 @@ export default function Cursor() {
             }}>
             {cursors[cursorType].icon}
         </div>
-    );
+    ) : <></>;
 }
 
 $(function () {

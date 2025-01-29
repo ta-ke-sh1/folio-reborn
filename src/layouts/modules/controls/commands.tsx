@@ -14,20 +14,15 @@ import { LINK_CURSOR_CLASS } from "../../../components/cursor/cursor";
 
 export default function Commands(props: any) {
     const inputRef = useRef(null);
-
     const { colorScheme } = useMantineColorScheme();
-
     const [command, setCommand] = useState("");
-
-    const [suggestions, setSuggestions] = useState([]);
-    const [commandList, setCommandList] = useState([]);
 
     function handleCommandChange(value: string) {
         setCommand(value);
     }
 
     return (
-        <ModuleCard style={{ width: "240px", ...props.style }}>
+        <ModuleCard style={{ width: props.width ?? "200px", ...props.style }}>
             <Group justify="space-between">
                 <Text
                     pt={5}
@@ -47,19 +42,25 @@ export default function Commands(props: any) {
                     value={command}
                     ref={inputRef}
                     style={{
+                        width: "100%",
                         fontFamily: "JetBrains Mono",
                     }}
                     onChange={(e) => handleCommandChange(e.currentTarget.value)}
+                    rightSection={
+                        <ActionIcon
+                            className={`${LINK_CURSOR_CLASS}`}
+                            color={
+                                colorScheme === "light" ? "dark.3" : "dark.5"
+                            }
+                            m={0}
+                            p={0}
+                            size={"sm"}
+                            onClick={() => props.handleClickEnter(command)}>
+                            <IconCornerRightUp />
+                        </ActionIcon>
+                    }
+                    rightSectionPointerEvents="auto"
                 />
-                <ActionIcon
-                    className={`${LINK_CURSOR_CLASS}`}
-                    color={colorScheme === "light" ? "dark.3" : "dark.5"}
-                    m={0}
-                    p={0}
-                    size={"lg"}
-                    onClick={() => props.handleClickEnter(command)}>
-                    <IconCornerRightUp />
-                </ActionIcon>
             </Group>
         </ModuleCard>
     );

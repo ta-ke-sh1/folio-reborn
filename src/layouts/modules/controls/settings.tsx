@@ -3,6 +3,7 @@ import {
     Group,
     rem,
     Switch,
+    Stack,
     Text,
     useMantineColorScheme,
     useMantineTheme,
@@ -64,10 +65,9 @@ export default function Controls(props: any) {
                     pl="xs"
                     pr="xs"
                     style={{ fontSize: "14px" }}>
-                    C0NTR0LS
+                    SETTINGS
                 </Text>
             </Group>
-
             <Divider m={0} />
             <Group justify="space-between" pl="xs" pr="xs" m={0} align="center">
                 <Text

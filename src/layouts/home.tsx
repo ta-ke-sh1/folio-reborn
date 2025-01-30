@@ -1,26 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePreloader } from "../hooks/usePreloader/usePreloader.tsx";
-import {
-    ActionIcon,
-    Grid,
-    Group,
-    useMantineTheme,
-    Burger,
-    Drawer,
-    Stack,
-} from "@mantine/core";
+import { Group, useMantineTheme, Burger, Drawer } from "@mantine/core";
 import WindowCard from "../components/card/windowCard.tsx";
 import ContactLayout from "./contact/contact.tsx";
 import PlaygroundLayout from "./modules/playground/playground.tsx";
 import Time from "./modules/controls/time.tsx";
-import Controls from "./modules/controls/controls.tsx";
+import Controls from "./modules/controls/settings.tsx";
 import Commands from "./modules/controls/commands.tsx";
 import GradientBackground from "../components/backgrounds/gradient.tsx";
 import EyeBackground from "../components/backgrounds/eye.tsx";
 import Theme from "./modules/controls/theme.tsx";
 import StoryLayout from "./story/story.tsx";
 import { useMediaQuery, useDisclosure } from "@mantine/hooks";
-import { IconMenu } from "@tabler/icons-react";
 import MobileMenu from "./modules/controls/mobileMenu.tsx";
 
 const backgrounds = [
@@ -45,7 +36,7 @@ export default function HomeLayout() {
         true
     );
 
-    const [opened, { toggle, open, close }] = useDisclosure();
+    const [opened, { toggle, close }] = useDisclosure();
 
     useEffect(() => {
         setTimeout(() => {
@@ -62,7 +53,7 @@ export default function HomeLayout() {
                     ...screens,
                     {
                         title: "folio",
-                        component: <StoryLayout height={"80vh"} />,
+                        component: <StoryLayout />,
                     },
                 ]);
                 break;
@@ -124,8 +115,8 @@ export default function HomeLayout() {
                         <Drawer
                             overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
                             offset={12}
-                            radius={0}
-                            padding={0}
+                            radius={8}
+                            padding={10}
                             opened={opened}
                             onClose={close}
                             position="bottom"
@@ -136,27 +127,30 @@ export default function HomeLayout() {
                         </Drawer>
                     </Group>
                 ) : (
-                    <Grid
-                        style={{
-                            width: "100%",
-                            zIndex: 10,
-                            position: "fixed",
-                            bottom: 10,
-                            left: 10,
-                        }}>
-                        <Grid.Col span={{ xs: 3 }}>
-                            <Group justify="start" style={{ zIndex: 10 }}>
-                                <Commands handleClickEnter={handleClickEnter} />
-                            </Group>
-                        </Grid.Col>
-                        <Grid.Col span={{ xs: 9 }}>
-                            <Group justify="end" pr={30}>
-                                <Theme toggleBg={toggleBg} />
-                                <Time />
-                                <Controls />
-                            </Group>
-                        </Grid.Col>
-                    </Grid>
+                    <>
+                        <Group
+                            style={{
+                                zIndex: 10,
+                                position: "fixed",
+                                bottom: 10,
+                                left: 10,
+                            }}>
+                            <Commands handleClickEnter={handleClickEnter} />
+                        </Group>
+                        <Group
+                            justify="end"
+                            pr={30}
+                            style={{
+                                zIndex: 10,
+                                position: "fixed",
+                                bottom: 10,
+                                right: 10,
+                            }}>
+                            <Theme toggleBg={toggleBg} />
+                            <Time />
+                            <Controls />
+                        </Group>
+                    </>
                 )}
                 {screens.map((screen, index: number) => (
                     <React.Fragment key={"screen-index-" + "g" + index}>

@@ -8,17 +8,28 @@ import { useMediaQuery } from "@mantine/hooks";
 export const LINK_CURSOR_CLASS = "link-cursor";
 
 export default function Cursor() {
-    
-    const theme = useMantineTheme();
-    const isMobile = useMediaQuery(`(max-width: ${parseInt(theme.breakpoints.sm, 10) * 16}px)`, true);
+    $(function () {
+        var cursor = $("#circle");
+        $(window)
+            .on("mouseleave", () => {
+                cursor.css({ opacity: "0" });
+            })
+            .on("mouseenter", () => {
+                cursor.css({ opacity: "1" });
+            });
+    });
 
+    const theme = useMantineTheme();
+    const isMobile = useMediaQuery(
+        `(max-width: ${parseInt(theme.breakpoints.sm, 10) * 16}px)`,
+        true
+    );
     const [cursorType, setCursorType] = useState(0);
-    
 
     const cursors = [
         {
             description: "default",
-            icon: <IconPlus />,
+            icon: <IconPlus style={{ mixBlendMode: "difference" }} />,
         },
         {
             description: "link",
@@ -69,16 +80,7 @@ export default function Cursor() {
             }}>
             {cursors[cursorType].icon}
         </div>
-    ) : <></>;
+    ) : (
+        <></>
+    );
 }
-
-$(function () {
-    var cursor = $("#circle");
-    $(window)
-        .on("mouseleave", () => {
-            cursor.css({ opacity: "0" });
-        })
-        .on("mouseenter", () => {
-            cursor.css({ opacity: "1" });
-        });
-});

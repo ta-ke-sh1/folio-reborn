@@ -8,7 +8,7 @@ import {
     Title,
     Tooltip,
 } from "@mantine/core";
-import { StyleHTMLAttributes, useEffect } from "react";
+import { useEffect } from "react";
 
 interface WindowCardProps {
     width?: number | string;
@@ -52,11 +52,9 @@ export default function WindowCard({
                     pt={"sm"}
                     justify={"space-between"}>
                     <Title order={4}>{title}</Title>
-                    <Tooltip withArrow={true} label={"Close window"}>
-                        <ActionIcon color={"red"} variant={"outline"}>
-                            <CloseIcon onClick={close} />
-                        </ActionIcon>
-                    </Tooltip>
+                    <ActionIcon color={"red"} variant={"outline"}>
+                        <CloseIcon onClick={close} />
+                    </ActionIcon>
                 </Group>
                 <Divider />
                 <Stack

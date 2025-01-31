@@ -9,8 +9,6 @@ export const debounce = (func: any, delay: number) => {
     };
 };
 
-const body = document.body;
-const docEl = document.documentElement;
 
 /**
  * Performs linear interpolation between two numbers.

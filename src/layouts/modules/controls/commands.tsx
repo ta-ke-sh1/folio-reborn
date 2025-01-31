@@ -13,7 +13,7 @@ import ModuleCard from "../../../components/card/moduleCard";
 import { IconCornerRightUp, IconHelpHexagon } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 import { LINK_CURSOR_CLASS } from "../../../components/cursor/cursor";
-import Pages from "./pages";
+import Pages from "./navigation";
 
 export default function Commands(props: any) {
     const inputRef = useRef(null);
@@ -30,7 +30,7 @@ export default function Commands(props: any) {
         <Stack>
             <ModuleCard>
                 {controlType === "0" ? (
-                    <Pages />
+                    <Pages handleClickEnter={props.handleClickEnter} />
                 ) : (
                     <>
                         <Group
@@ -96,7 +96,7 @@ export default function Commands(props: any) {
                         pl="xs"
                         pr="xs"
                         style={{ fontSize: "14px" }}>
-                        C0NTR0LS
+                        EXPLORE
                     </Text>
                     <Tooltip label="Cheatsheet" withArrow>
                         <IconHelpHexagon
@@ -111,8 +111,8 @@ export default function Commands(props: any) {
                     value={controlType}
                     onChange={setControlType}
                     data={[
-                        { label: "Command", value: "1" },
-                        { label: "Pages", value: "0" },
+                        { label: "C0MMANDS", value: "1" },
+                        { label: "TREE", value: "0" },
                     ]}
                 />
             </ModuleCard>

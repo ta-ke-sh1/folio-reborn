@@ -1,13 +1,9 @@
 import { Grid } from "@mantine/core";
 import Time from "./time";
 import Controls from "./settings";
-import Pages from "./pages";
+import Pages from "./navigation";
 
 export default function MobileMenu() {
-    function handleClickEnter(command: string) {
-        console.log(command);
-    }
-
     return (
         <Grid gutter={12} style={{ overflow: "hidden" }}>
             <Grid.Col span={6}>

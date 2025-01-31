@@ -6,7 +6,6 @@ import {
     Group,
     Stack,
     Title,
-    Tooltip,
 } from "@mantine/core";
 import { useEffect } from "react";
 

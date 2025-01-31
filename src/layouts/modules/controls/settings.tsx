@@ -3,7 +3,6 @@ import {
     Group,
     rem,
     Switch,
-    Stack,
     Text,
     useMantineColorScheme,
     useMantineTheme,

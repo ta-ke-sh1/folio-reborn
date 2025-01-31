@@ -62,7 +62,7 @@ export default function HomeLayout() {
                     ...screens,
                     {
                         title: "contact",
-                        component: <ContactLayout height={"80vh"} />,
+                        component: <ContactLayout />,
                     },
                 ]);
                 break;
@@ -139,7 +139,7 @@ export default function HomeLayout() {
                         </Group>
                         <Group
                             justify="end"
-                            pr={30}
+                            pr={0}
                             style={{
                                 zIndex: 10,
                                 position: "fixed",

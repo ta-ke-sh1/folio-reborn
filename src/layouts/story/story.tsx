@@ -110,7 +110,6 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
             ) : (
                 <></>
             )}
-
             <div
                 style={{
                     position: "absolute",
@@ -151,7 +150,7 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                     </span>{" "}
                     BASED IN HAN0I, VIETNAM. CURRENTLY W0RKING FULL-TIME AT
                     TOSHIBA SOFTWARE DEVEL0PMENT VIETNAM, AN OFFSHORE SOFTWARE
-                    DEVELOPMENT CENTERS OF TOSHIBA CORPORATE.
+                    DEVELOPMENT CENTER OF TOSHIBA CORPORATE.
                 </p>
             </div>
             <img

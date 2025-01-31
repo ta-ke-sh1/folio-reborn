@@ -1,4 +1,9 @@
-import { Card, Stack, useMantineColorScheme } from "@mantine/core";
+import {
+    Card,
+    MantineShadow,
+    Stack,
+    useMantineColorScheme,
+} from "@mantine/core";
 
 const strokeWidth = 1;
 
@@ -30,6 +35,7 @@ const bottomRightCorner = {
 interface ModuleCardProps {
     children: JSX.Element[] | JSX.Element;
     style?: any;
+    shadow?: MantineShadow | undefined;
 }
 
 function Corner({ style, className }: { style?: any; className: string }) {
@@ -54,10 +60,14 @@ function Corner({ style, className }: { style?: any; className: string }) {
     );
 }
 
-export default function ModuleCard({ style, children }: ModuleCardProps) {
+export default function ModuleCard({
+    shadow,
+    style,
+    children,
+}: ModuleCardProps) {
     return (
         <Card
-            shadow={"xs"}
+            shadow={shadow}
             style={{ ...style }}
             className="module-box"
             m={0}

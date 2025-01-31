@@ -3,6 +3,8 @@ import svg from "/svg/eye/art.svg";
 import { useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { shuffleText } from "../../utils/utils";
+import $ from "jquery";
 
 gsap.registerPlugin(useGSAP); // register the hook to avoid React version discrepancies
 
@@ -31,12 +33,23 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
     }, []);
 
     function onMouseEnterSpan(image: string) {
+        gsap.to("#text-container", {
+            color: "rgba(0,0,0,0)",
+            duration: 0.1,
+        });
         const url = `/img/about/${image}`;
         setImageUrl(url);
     }
 
     function onMouseLeaveSpan() {
         setImageUrl("");
+        gsap.to("#text-container", {
+            color:
+                colorScheme === "light"
+                    ? "rgba(0,0,0,1)"
+                    : "rgba(255,255,255,1)",
+            duration: 0.1,
+        });
     }
 
     return (
@@ -54,7 +67,7 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
             <div
                 style={{
                     position: "absolute",
-                    bottom: "20px",
+                    bottom: "0px",
                     left: "20px",
                     fontSize: "11px",
                     width: "30vmax",
@@ -65,30 +78,10 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                         letterSpacing: "-2px",
                         fontFamily: "serif-regular",
                         fontSize: "80px",
-                        marginBottom: "-10px",
+                        marginBottom: "-15px",
                     }}>
                     About
                 </Text>
-
-                <p>
-                    SIDE PROJECTS AS THIS KEEPS MYSELF{" "}
-                    <span
-                        onMouseEnter={() => onMouseEnterSpan("fresh.jpg")}
-                        onMouseLeave={onMouseLeaveSpan}
-                        style={imageSpanStyle}>
-                        (FRESH)
-                    </span>{" "}
-                    AND UPDATED WITH THELATEST TECHNOLOGIES. THIS SITE IS
-                    DESIGNED FOR TO STACK UP NEW TECHNIQUES &{" "}
-                    <span
-                        onMouseEnter={() => onMouseEnterSpan("experiment.jpg")}
-                        onMouseLeave={onMouseLeaveSpan}
-                        style={imageSpanStyle}>
-                        (EXPERIMENTS)
-                    </span>{" "}
-                    AS REPLACABLE MODULES. THE VISUALS THAT YOU ARE SEEING NOW
-                    MIGHT NOT LAST UNTIL NEXT MONTH.
-                </p>
             </div>
             {imageUrl.length > 0 ? (
                 <div
@@ -111,6 +104,7 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                 <></>
             )}
             <div
+                id="text-container"
                 style={{
                     position: "absolute",
                     top: "50%",
@@ -122,28 +116,40 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                 }}>
                 <p style={{ textAlign: "left", mixBlendMode: "exclusion" }}>
                     <span
-                        onMouseEnter={() => onMouseEnterSpan("1.jpg")}
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("1.jpg");
+                            shuffleText(e, "(DEVELOPER)");
+                        }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
                         (DEVEL0PER)
                     </span>
                     ,{" "}
                     <span
-                        onMouseEnter={() => onMouseEnterSpan("2.jpg")}
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("2.jpg");
+                            shuffleText(e, "(AMATEUR VIDE0 TAKER)");
+                        }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
                         (AMATEUR VIDE0 TAKER)
                     </span>
                     ,{" "}
                     <span
-                        onMouseEnter={() => onMouseEnterSpan("3.jpg")}
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("3.jpg");
+                            shuffleText(e, "(PH0T0 TAKER)");
+                        }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
-                        (AMATEUR PH0T0 TAKER)
+                        (PH0T0 TAKER)
                     </span>
                     ,{" "}
                     <span
-                        onMouseEnter={() => onMouseEnterSpan("4.jpg")}
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("4.jpg");
+                            shuffleText(e, "(AL00F RIDER)");
+                        }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
                         (AL00F RIDER)
@@ -151,6 +157,32 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                     BASED IN HAN0I, VIETNAM. CURRENTLY W0RKING FULL-TIME AT
                     TOSHIBA SOFTWARE DEVEL0PMENT VIETNAM, AN OFFSHORE SOFTWARE
                     DEVELOPMENT CENTER OF TOSHIBA CORPORATE.
+                </p>
+                <br />
+                <p>
+                    SIDE PROJECTS AS THIS KEEPS MYSELF{" "}
+                    <span
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("fresh.jpg");
+                            shuffleText(e, "(FRESH)");
+                        }}
+                        onMouseLeave={onMouseLeaveSpan}
+                        style={imageSpanStyle}>
+                        (FRESH)
+                    </span>{" "}
+                    AND UPDATED WITH THELATEST TECHNOLOGIES. THIS SITE IS
+                    DESIGNED FOR TO STACK UP NEW TECHNIQUES &{" "}
+                    <span
+                        onMouseEnter={(e) => {
+                            onMouseEnterSpan("experiment.jpg");
+                            shuffleText(e, "(EXPERIMENTS)");
+                        }}
+                        onMouseLeave={onMouseLeaveSpan}
+                        style={imageSpanStyle}>
+                        (EXPERIMENTS)
+                    </span>{" "}
+                    AS REPLACABLE MODULES. THE VISUALS THAT YOU ARE SEEING NOW
+                    MIGHT NOT LAST UNTIL NEXT MONTH.
                 </p>
             </div>
             <img

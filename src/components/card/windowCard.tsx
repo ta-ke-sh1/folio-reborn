@@ -6,8 +6,9 @@ import {
     Group,
     Stack,
     Title,
+    Tooltip,
 } from "@mantine/core";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface WindowCardProps {
     width?: number | string;

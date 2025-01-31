@@ -8,20 +8,11 @@ import Time from "./modules/controls/time.tsx";
 import Controls from "./modules/controls/settings.tsx";
 import Commands from "./modules/controls/commands.tsx";
 import GradientBackground from "../components/backgrounds/gradient.tsx";
-import EyeBackground from "../components/backgrounds/eye.tsx";
-import Theme from "./modules/controls/theme.tsx";
 import StoryLayout from "./story/story.tsx";
 import { useMediaQuery, useDisclosure } from "@mantine/hooks";
 import MobileMenu from "./modules/controls/mobileMenu.tsx";
-
-const backgrounds = [
-    {
-        component: <GradientBackground />,
-    },
-    {
-        component: <EyeBackground />,
-    },
-];
+import ProjectsLayout from "./projects/projects.tsx";
+import GalleriaLayout from "./modules/galleria/galleria.tsx";
 
 export default function HomeLayout() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +20,6 @@ export default function HomeLayout() {
     const theme = useMantineTheme();
 
     const [screens, setScreens] = useState<[] | any[]>([]);
-    const [selectedBg, setSelectedBg] = useState<number>(0);
 
     const isMobile = useMediaQuery(
         `(max-width: ${parseInt(theme.breakpoints.sm, 10) * 16}px)`,
@@ -50,28 +40,41 @@ export default function HomeLayout() {
         switch (command) {
             case "/a":
                 setScreens([
-                    ...screens,
                     {
-                        title: "folio",
+                        title: "F0LI0",
                         component: <StoryLayout />,
                     },
                 ]);
                 break;
             case "/c":
                 setScreens([
-                    ...screens,
                     {
-                        title: "contact",
+                        title: "C0NTACT",
                         component: <ContactLayout />,
                     },
                 ]);
                 break;
             case "/p":
                 setScreens([
-                    ...screens,
                     {
-                        title: "playground",
-                        component: <PlaygroundLayout height={"80vh"} />,
+                        title: "PLAYGR0UND",
+                        component: <PlaygroundLayout />,
+                    },
+                ]);
+                break;
+            case "/projects":
+                setScreens([
+                    {
+                        title: "PR0JECTS",
+                        component: <ProjectsLayout />,
+                    },
+                ]);
+                break;
+            case "/g":
+                setScreens([
+                    {
+                        title: "GALLERY",
+                        component: <GalleriaLayout />,
                     },
                 ]);
                 break;
@@ -84,10 +87,6 @@ export default function HomeLayout() {
         let screenTempArr = JSON.parse(JSON.stringify(screens));
         screenTempArr.splice(index, 1);
         setScreens(screenTempArr);
-    };
-
-    const toggleBg = (index: number) => {
-        setSelectedBg(index);
     };
 
     return (
@@ -123,7 +122,10 @@ export default function HomeLayout() {
                             size={"510px"}
                             zIndex={100}
                             withCloseButton={false}>
-                            <MobileMenu />
+                            <MobileMenu
+                                close={close}
+                                handleClickEnter={handleClickEnter}
+                            />
                         </Drawer>
                     </Group>
                 ) : (
@@ -139,14 +141,13 @@ export default function HomeLayout() {
                         </Group>
                         <Group
                             justify="end"
-                            pr={0}
+                            pr={30}
                             style={{
                                 zIndex: 10,
                                 position: "fixed",
                                 bottom: 10,
                                 right: 10,
                             }}>
-                            <Theme toggleBg={toggleBg} />
                             <Time />
                             <Controls />
                         </Group>
@@ -162,7 +163,7 @@ export default function HomeLayout() {
                         </WindowCard>
                     </React.Fragment>
                 ))}
-                {backgrounds[selectedBg].component}
+                <GradientBackground />
             </div>
         </>
     );

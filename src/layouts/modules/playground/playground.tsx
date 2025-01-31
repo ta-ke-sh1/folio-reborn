@@ -1,53 +1,50 @@
 import { Container, Stack } from "@mantine/core";
 import { useEffect, useRef } from "react";
-import { ImageTrail, handlePointerMove } from "../../../animations/imageTrails/imageTrail";
+import {
+    ImageTrail,
+    handlePointerMove,
+} from "../../../animations/imageTrails/imageTrail";
 import { useLanguageState } from "../../../hooks/useLanguage";
 
 interface PlaygroundLayoutProps {
-    width?: number | string
-    height?: number | string
+    width?: number | string;
+    height?: number | string;
 }
 
-export default function PlaygroundLayout({ width, height }: PlaygroundLayoutProps) {
+export default function PlaygroundLayout({
+    width,
+    height,
+}: PlaygroundLayoutProps) {
     const { languageData } = useLanguageState();
 
     let containerRef = useRef<any>();
 
-    let imageTrailAnimation = useRef<ImageTrail | undefined>(undefined);
-
-    useEffect(() => {
-        containerRef.current.addEventListener('mouseover', () => {
-            window.addEventListener('touchmove', handlePointerMove);
-            window.addEventListener('mousemove', handlePointerMove)
-            if (imageTrailAnimation.current === undefined) {
-                imageTrailAnimation.current = ImageTrail.getInstance(document.querySelector('.contents'));
-            }
-        })
-        containerRef.current.addEventListener('mouseleave', () => {
-            window.removeEventListener('mousemove', handlePointerMove)
-            window.removeEventListener('touchmove', handlePointerMove);
-        })
-    }, [])
+    useEffect(() => {}, []);
 
     const font_style = {
-        lineHeight: '12px',
+        lineHeight: "12px",
         fontFamily: "Geist Sans",
-    }
+    };
 
     return (
         <>
             <Container
                 style={{
-                    height: height ?? '90dvh', width: width ?? "100%", position: 'relative'
+                    height: height ?? "90dvh",
+                    width: width ?? "100%",
+                    position: "relative",
                 }}
-                className={"hover-container"} ref={containerRef}
+                className={"hover-container"}
+                ref={containerRef}
                 fluid>
-                <Stack align={"center"} style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)'
-                }}>
+                <Stack
+                    align={"center"}
+                    style={{
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                    }}>
                     <Stack className={"shuffle-container"} style={font_style}>
                         {languageData.playground.paragraph.r1}
                     </Stack>
@@ -59,40 +56,7 @@ export default function PlaygroundLayout({ width, height }: PlaygroundLayoutProp
                     </Stack>
                 </Stack>
             </Container>
-            <Container style={{ height: '0dvh' }}>
-                <div className="contents">
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('img/21.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/22.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/23.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/24.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/25.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/26.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/27.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/28.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/29.jpg')" }}></div>
-                    </div>
-                    <div className="content__img">
-                        <div className="content__img-inner" style={{ backgroundImage: "url('/img/30.jpg')" }}></div>
-                    </div>
-                </div>
-            </Container>
+            <Container style={{ height: "0dvh" }}></Container>
         </>
-    )
+    );
 }

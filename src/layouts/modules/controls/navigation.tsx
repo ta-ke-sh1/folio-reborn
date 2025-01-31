@@ -3,9 +3,13 @@ import { shuffleText } from "../../../utils/utils";
 
 interface NavigationPageProps {
     handleClickEnter: any;
+    styles?: any;
 }
 
-export default function Pages({ handleClickEnter }: NavigationPageProps) {
+export default function Pages({
+    handleClickEnter,
+    styles,
+}: NavigationPageProps) {
     return (
         <div
             style={{
@@ -14,6 +18,7 @@ export default function Pages({ handleClickEnter }: NavigationPageProps) {
                 padding: 8,
                 paddingTop: 25,
                 paddingLeft: 30,
+                ...styles,
             }}>
             <Text
                 style={{
@@ -40,7 +45,7 @@ interface SvgProps {
 const ProjectsSvg = ({ onMouseDown }: SvgProps) => {
     return (
         <div
-            onMouseDown={() => onMouseDown("/p")}
+            onMouseDown={() => onMouseDown("/projects")}
             onMouseEnter={(e) => shuffleText(e, "PR0JECTS")}
             className="tree-node"
             style={{

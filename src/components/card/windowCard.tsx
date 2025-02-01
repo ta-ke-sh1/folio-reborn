@@ -46,14 +46,9 @@ export default function WindowCard({
                     width: width ?? "96vw",
                     height: height ?? "85vh",
                 }}>
-                <Group
-                    pl={"md"}
-                    pr={"md"}
-                    pb={"md"}
-                    pt={"sm"}
-                    justify={"space-between"}>
-                    <Title style={{ opacity: 0 }}>{title}</Title>
-                    <Title order={4}>{title}</Title>
+                <Group pl={"md"} pr={"sm"} pb={"sm"} pt={"sm"} justify={"end"}>
+                    {/* <Title style={{ opacity: 0 }}>{title}</Title>
+                    <Title order={4}>{title}</Title> */}
                     <ActionIcon color={"red"} variant={"outline"}>
                         <CloseIcon onClick={close} />
                     </ActionIcon>

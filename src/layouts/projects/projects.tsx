@@ -1,18 +1,25 @@
-import { Card, Container, Grid, Text } from "@mantine/core";
-import { useLanguageState } from "../../hooks/useLanguage.ts";
+import { Stack, Container, Text, Badge, Group } from "@mantine/core";
+import { IconArrowDown } from "@tabler/icons-react";
 
 export default function ProjectsLayout() {
-    const { languageData } = useLanguageState();
-
     return (
-        <Container fluid style={{ height: "100%" }}>
+        <Container
+            fluid
+            p={0}
+            m={0}
+            className="hide-scroll"
+            style={{
+                width: "100%",
+                height: "94%",
+                position: "relative",
+                overflowY: "auto",
+            }}>
             <div
                 style={{
-                    position: "absolute",
-                    top: "0px",
+                    position: "fixed",
+                    top: "40px",
                     left: "20px",
                     fontSize: "11px",
-                    width: "30vmax",
                 }}>
                 <Text
                     mt={"xs"}
@@ -20,25 +27,47 @@ export default function ProjectsLayout() {
                         letterSpacing: "-2px",
                         fontFamily: "serif-regular",
                         fontSize: "80px",
-                        marginBottom: "-15px",
+                        marginBottom: "-25px",
                     }}>
                     Memories
                 </Text>
+                <Group>
+                    <Badge color="gray" variant="outline">
+                        (100) items
+                    </Badge>
+                </Group>
             </div>
-            <Grid>
-                <Grid.Col span={{ base: 6, sm: 12, md: 6 }}>
-                    <Card></Card>
-                </Grid.Col>
-                <Grid.Col span={{ base: 6, sm: 12, md: 6 }}>
-                    <Card></Card>
-                </Grid.Col>
-                <Grid.Col span={{ base: 6, sm: 12, md: 6 }}>
-                    <Card></Card>
-                </Grid.Col>
-                <Grid.Col span={{ base: 6, sm: 12, md: 6 }}>
-                    <Card></Card>
-                </Grid.Col>
-            </Grid>
+            <Stack align="center">
+                {[...Array(100).keys()].map((a: any, index: number) => {
+                    return (
+                        <div
+                            style={{
+                                marginTop: "30px",
+                                textAlign: "center",
+                                height: "200px",
+                                width: "400px",
+                                backgroundColor: "crimson",
+                            }}>
+                            {index}
+                        </div>
+                    );
+                })}
+            </Stack>
+            <div
+                style={{
+                    position: "fixed",
+                    bottom: "10px",
+                    left: "50%",
+                    fontSize: "11px",
+                    transform: "translateX(-50%)",
+                }}>
+                <Badge
+                    color="red.5"
+                    variant="filled"
+                    rightSection={<IconArrowDown size={12} />}>
+                    SCR0LL T0 SEE M0RE
+                </Badge>
+            </div>
         </Container>
     );
 }

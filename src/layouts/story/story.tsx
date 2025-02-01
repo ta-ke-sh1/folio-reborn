@@ -78,7 +78,7 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                         letterSpacing: "-2px",
                         fontFamily: "serif-regular",
                         fontSize: "80px",
-                        marginBottom: "-15px",
+                        paddingBottom: "-15px",
                     }}>
                     About
                 </Text>

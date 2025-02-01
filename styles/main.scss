@@ -27,6 +27,7 @@ html:hover {
   background-color: white;
 }
 
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 html::-webkit-scrollbar {
   display: none !important;
@@ -67,4 +68,17 @@ path.bottom {
 	stroke: #a1a1b6;
 	stroke-width: 0.5px;
 	stroke-linecap: round;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
 }

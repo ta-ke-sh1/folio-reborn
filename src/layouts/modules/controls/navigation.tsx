@@ -50,7 +50,7 @@ const ProjectsSvg = ({ onMouseDown }: SvgProps) => {
             className="tree-node"
             style={{
                 position: "absolute",
-                top: "115px",
+                top: "113px",
                 right: "10px",
             }}>
             MEM0RIES
@@ -62,16 +62,15 @@ const GallerySvg = ({ onMouseDown }: SvgProps) => {
     return (
         <div
             onMouseDown={() => onMouseDown("/g")}
-            onMouseEnter={(e) => shuffleText(e, "VISI0NS")}
+            onMouseEnter={(e) => shuffleText(e, "WRITINGS")}
             className="tree-node"
             style={{
                 position: "absolute",
-                top: "24px",
-                right: "12px",
-
+                top: "25px",
+                right: "7px",
                 transform: "rotate(-45deg)",
             }}>
-            VISI0NS
+            WRITINGS
         </div>
     );
 };

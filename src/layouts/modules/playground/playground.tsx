@@ -1,62 +1,65 @@
-import { Container, Stack } from "@mantine/core";
-import { useEffect, useRef } from "react";
-import {
-    ImageTrail,
-    handlePointerMove,
-} from "../../../animations/imageTrails/imageTrail";
-import { useLanguageState } from "../../../hooks/useLanguage";
+import { Container, Text, Badge, Group } from "@mantine/core";
+import { IconArrowDown } from "@tabler/icons-react";
+import { useEffect } from "react";
 
-interface PlaygroundLayoutProps {
-    width?: number | string;
-    height?: number | string;
-}
-
-export default function PlaygroundLayout({
-    width,
-    height,
-}: PlaygroundLayoutProps) {
-    const { languageData } = useLanguageState();
-
-    let containerRef = useRef<any>();
-
+export default function PlaygroundLayout() {
     useEffect(() => {}, []);
-
-    const font_style = {
-        lineHeight: "12px",
-        fontFamily: "Geist Sans",
-    };
-
     return (
         <>
             <Container
+                fluid
+                p={0}
+                m={0}
                 style={{
-                    height: height ?? "90dvh",
-                    width: width ?? "100%",
+                    width: "100%",
+                    height: "100%",
                     position: "relative",
-                }}
-                className={"hover-container"}
-                ref={containerRef}
-                fluid>
-                <Stack
-                    align={"center"}
+                    overflowX: "hidden",
+                }}>
+                <div
                     style={{
-                        position: "absolute",
-                        left: "50%",
-                        top: "50%",
-                        transform: "translate(-50%, -50%)",
+                        position: "fixed",
+                        top: "40px",
+                        left: "20px",
+                        fontSize: "11px",
                     }}>
-                    <Stack className={"shuffle-container"} style={font_style}>
-                        {languageData.playground.paragraph.r1}
-                    </Stack>
-                    <Stack className={"shuffle-container"} style={font_style}>
-                        {languageData.playground.paragraph.r2}
-                    </Stack>
-                    <Stack className={"shuffle-container"} style={font_style}>
-                        {languageData.playground.paragraph.r3}
-                    </Stack>
-                </Stack>
+                    <Text
+                        mt={"xs"}
+                        style={{
+                            letterSpacing: "-2px",
+                            fontFamily: "serif-regular",
+                            fontSize: "80px",
+                            marginBottom: "-25px",
+                        }}>
+                        Playground
+                    </Text>
+                    <Group align="end">
+                        <Badge color="gray" variant="outline">
+                            (100) items
+                        </Badge>
+                    </Group>
+                    <p style={{ width: "30%", marginTop: "10px" }}>
+                        Well all my works at Toshiba are confidential. This site
+                        is where I test out & deploy new shits and ideas as well
+                        as personal development topics
+                    </p>
+                </div>
+                <div
+                    style={{
+                        position: "fixed",
+                        bottom: "10px",
+                        left: "50%",
+                        fontSize: "11px",
+                        transform: "translateX(-50%)",
+                    }}>
+                    <Badge
+                        color="red.5"
+                        variant="filled"
+                        rightSection={<IconArrowDown size={12} />}>
+                        SCR0LL T0 SEE M0RE
+                    </Badge>
+                </div>
             </Container>
-            <Container style={{ height: "0dvh" }}></Container>
         </>
     );
 }

@@ -66,11 +66,11 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
             }}>
             <div
                 style={{
+                    width: "100%",
                     position: "absolute",
-                    bottom: "0px",
-                    left: "20px",
+                    bottom: "10px",
+                    textAlign: "center",
                     fontSize: "11px",
-                    width: "30vmax",
                 }}>
                 <Text
                     mt={"xs"}
@@ -124,27 +124,27 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                         style={imageSpanStyle}>
                         (DEVEL0PER)
                     </span>
-                    ,{" "}
+                    ,
                     <span
                         onMouseEnter={(e) => {
                             onMouseEnterSpan("2.jpg");
-                            shuffleText(e, "(AMATEUR VIDE0 TAKER)");
+                            shuffleText(e, "(VIDEOGRAPHER)");
                         }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
                         (AMATEUR VIDE0 TAKER)
                     </span>
-                    ,{" "}
+                    ,
                     <span
                         onMouseEnter={(e) => {
                             onMouseEnterSpan("3.jpg");
-                            shuffleText(e, "(PH0T0 TAKER)");
+                            shuffleText(e, "(PH0T0GRAPHER)");
                         }}
                         onMouseLeave={onMouseLeaveSpan}
                         style={imageSpanStyle}>
                         (PH0T0 TAKER)
                     </span>
-                    ,{" "}
+                    ,
                     <span
                         onMouseEnter={(e) => {
                             onMouseEnterSpan("4.jpg");
@@ -193,7 +193,7 @@ export default function StoryLayout({ height, width }: StoryLayoutProps) {
                     right: -150,
                     top: -150,
                 }}
-                height={400}
+                height={350}
                 src={svg}
                 alt="My SVG"
             />

@@ -6,9 +6,8 @@ import {
     Group,
     Stack,
     Title,
-    Tooltip,
+    useMantineColorScheme,
 } from "@mantine/core";
-import { useEffect, useRef } from "react";
 
 interface WindowCardProps {
     width?: number | string;
@@ -27,9 +26,7 @@ export default function WindowCard({
     close,
     style,
 }: WindowCardProps) {
-    useEffect(() => {
-        return () => {};
-    }, []);
+    const { colorScheme } = useMantineColorScheme();
 
     return (
         <>
@@ -38,12 +35,16 @@ export default function WindowCard({
                 padding={0}
                 style={{
                     ...style,
+                    border:
+                        colorScheme === "light"
+                            ? "rgba(0,0,0, 0.1) solid 1px"
+                            : "rgba(255,255,255, 0.2) solid 1px",
                     position: "absolute",
                     left: "50%",
-                    top: "50%",
+                    top: "52%",
                     transform: "translate(-50%, -50%)",
                     width: width ?? "96vw",
-                    height: height ?? "92vh",
+                    height: height ?? "85vh",
                 }}>
                 <Group
                     pl={"md"}
@@ -51,6 +52,7 @@ export default function WindowCard({
                     pb={"md"}
                     pt={"sm"}
                     justify={"space-between"}>
+                    <Title style={{ opacity: 0 }}>{title}</Title>
                     <Title order={4}>{title}</Title>
                     <ActionIcon color={"red"} variant={"outline"}>
                         <CloseIcon onClick={close} />
@@ -75,7 +77,7 @@ export default function WindowCard({
                     width: "100dvw",
                     height: "100dvh",
                     backdropFilter: "blur(2px)",
-                    zIndex: 50,
+                    zIndex: -1,
                 }}></div>
         </>
     );

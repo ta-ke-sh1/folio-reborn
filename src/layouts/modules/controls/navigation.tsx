@@ -46,14 +46,14 @@ const ProjectsSvg = ({ onMouseDown }: SvgProps) => {
     return (
         <div
             onMouseDown={() => onMouseDown("/projects")}
-            onMouseEnter={(e) => shuffleText(e, "PR0JECTS")}
+            onMouseEnter={(e) => shuffleText(e, "MEM0RIES")}
             className="tree-node"
             style={{
                 position: "absolute",
                 top: "115px",
-                right: "7px",
+                right: "10px",
             }}>
-            PR0JECTS
+            MEM0RIES
         </div>
     );
 };
@@ -62,7 +62,7 @@ const GallerySvg = ({ onMouseDown }: SvgProps) => {
     return (
         <div
             onMouseDown={() => onMouseDown("/g")}
-            onMouseEnter={(e) => shuffleText(e, "GALLERY")}
+            onMouseEnter={(e) => shuffleText(e, "VISI0NS")}
             className="tree-node"
             style={{
                 position: "absolute",
@@ -71,7 +71,7 @@ const GallerySvg = ({ onMouseDown }: SvgProps) => {
 
                 transform: "rotate(-45deg)",
             }}>
-            GALLERY
+            VISI0NS
         </div>
     );
 };
@@ -84,8 +84,8 @@ const PlaygroundsSvg = ({ onMouseDown }: SvgProps) => {
             className="tree-node"
             style={{
                 position: "absolute",
-                top: "72px",
-                right: "65px",
+                top: "60px",
+                right: "70px",
                 transform: "rotate(45deg)",
             }}>
             PLAYGR0UND

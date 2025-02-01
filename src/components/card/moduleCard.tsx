@@ -65,10 +65,18 @@ export default function ModuleCard({
     style,
     children,
 }: ModuleCardProps) {
+    const { colorScheme } = useMantineColorScheme();
+
     return (
         <Card
             shadow={shadow}
-            style={{ ...style }}
+            style={{
+                ...style,
+                border:
+                    colorScheme === "light"
+                        ? "rgba(0,0,0, 0.1) solid 1px"
+                        : "rgba(255,255,255, 0.2) solid 1px",
+            }}
             className="module-box"
             m={0}
             p={0}

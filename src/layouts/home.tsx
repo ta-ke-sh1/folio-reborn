@@ -57,7 +57,7 @@ export default function HomeLayout() {
             case "/p":
                 setScreens([
                     {
-                        title: "PLAYGR0UND",
+                        title: "VISI0NS",
                         component: <PlaygroundLayout />,
                     },
                 ]);
@@ -65,7 +65,7 @@ export default function HomeLayout() {
             case "/projects":
                 setScreens([
                     {
-                        title: "PR0JECTS",
+                        title: "MEM0RIES",
                         component: <ProjectsLayout />,
                     },
                 ]);
@@ -141,7 +141,6 @@ export default function HomeLayout() {
                         </Group>
                         <Group
                             justify="end"
-                            pr={30}
                             style={{
                                 zIndex: 10,
                                 position: "fixed",
@@ -156,7 +155,7 @@ export default function HomeLayout() {
                 {screens.map((screen, index: number) => (
                     <React.Fragment key={"screen-index-" + "g" + index}>
                         <WindowCard
-                            style={{ zIndex: 1000 }}
+                            style={{ zIndex: 0 }}
                             close={() => handleCloseScreen(index)}
                             title={screen.title}>
                             {screen.component}
